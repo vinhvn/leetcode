@@ -1,13 +1,12 @@
 class Solution:
     def reverse(self, x: int) -> int:
-        # convert to abs
-        # create a list of digits of x
-        # reverse its digits
-        # and convert list back into an int
-        val = abs(x)
-        lis = [i for i in str(val)]
-        lis.reverse()
-        n = int("".join(lis))
+        """
+        convert to abs and stringify value
+        reverse its digits and convert back into an int
+        """
+    
+        s = str(abs(x))
+        n = int(s[::-1])
         if (x < 0):
             n *= -1
         
@@ -16,3 +15,9 @@ class Solution:
             return 0
         
         return n
+    
+        """
+        n = number of digits in x
+        Time complexity: O(n). We must traverse over each digit in order to stringify and reverse it.
+        Space complexity: O(n). We store the string version of integer x in order to reverse it.
+        """
