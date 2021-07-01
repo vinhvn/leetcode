@@ -1,16 +1,14 @@
 class Solution:
     def reverse(self, x: int) -> int:
         """
-        convert to abs and stringify value
+        convert to absolute value and stringify value
         reverse its digits and convert back into an int
         """
     
-        s = str(abs(x))
-        n = int(s[::-1])
+        n = int(str(abs(x))[::-1])
         if (x < 0):
             n *= -1
         
-        # bounds checking
         if (n < -2**31 or n > (2**31) - 1):
             return 0
         
