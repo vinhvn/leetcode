@@ -1,18 +1,22 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
+        
         # dict to store complement (key) and index 
-        d = {}
+        hashmap = {}
         
         for i in range(len(nums)):
-            n = nums[i]
+            val = nums[i]
             # if number is in dict, we found a pair
-            if n in d:
-                return [d[n], i]
+            # else, we put in the complement we want to find
+            if val in hashmap:
+                return [hashmap[val], i]
             else:
-                d[target - n] = i
+                hashmap[target - val] = i
         
-        # Time complexity: O(n)
-        #   The algorithm will loop for n iterations at most once
-        # Space complexity: O(n)
-        #   This algorithm uses a hashmap which can grow up to n keys if no suitable complements can be found
+        """
+        n = len(nums)
+        Time complexity: O(n), linear time. Loops over each element of nums once at most.
+        
+        Space complexity: O(n), linear space. The hashmap grows up to n keys if no suitable complements can be found
+        """
