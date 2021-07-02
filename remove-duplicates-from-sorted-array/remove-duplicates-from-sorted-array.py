@@ -1,21 +1,27 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         """
-        iterate through nums
-        check adjacent nums to see if they match
-        remove matching nums and continue iterating
-        """
-        i = 0
-        while i < len(nums):
-            if i != len(nums) - 1 and nums[i] == nums[i+1]:
-                nums.pop(i+1)
-            else:
-                i += 1
-        
-        return len(nums)
-        
+        iterate through nums using two pointers
+        set nums at p1 to p2 when p2 finds a different number
         """
         n = len(nums)
-        Time complexity: O(n), linear time. The loop will iterate over each number in nums once at most.
-        Space complexity: O(1), constant space. The only variable used is to track index position.
+        if n < 2:
+            return n
+        
+        prev = nums[0]
+        p1 = 1
+        p2 = 1
+        while p2 < n:
+            if nums[p2] != prev:
+                nums[p1] = nums[p2]
+                prev = nums[p2]
+                p1 += 1
+            
+            p2 += 1
+        
+        return p1
+        
+        """
+        Time complexity: O(n), linear time. The while loop iterates over each number in the array once.
+        Space complexity: O(1), constant space. The only variables used are to track index positions and integer value.
         """
