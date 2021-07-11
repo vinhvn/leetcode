@@ -3,10 +3,10 @@ class Solution:
         """
         iterate over all strings in strs
         compare character at same index
-        store common characters
+        store end index of common string
         """
         
-        prefix = ""
+        end = -1
         for i in range(len(strs[0])):
             match = True
             c = strs[0][i]
@@ -16,9 +16,18 @@ class Solution:
                     break
             
             if match:
-                prefix += c
+                end = i
             else:
-                return prefix
+                break
         
-        return prefix
-            
+        return strs[0][:end+1] if end >= 0 else ""
+        
+        """
+        n = num of chars in strs[0]
+        m = num of strings in strs
+        
+        Time complexity: O(nm), linear time.
+            The loop will iterate over the first n characters of each string
+        Space complexity: O(1), constant space.
+            The integer used to store the prefix end index stays constant.
+        """
