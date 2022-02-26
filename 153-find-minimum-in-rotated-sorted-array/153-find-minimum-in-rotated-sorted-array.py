@@ -12,11 +12,9 @@ class Solution:
                 return nums[mid]
             elif nums[mid+1] < nums[mid]:
                 return nums[mid+1]
-
             elif nums[mid] > nums[l]:
                 return binary_search(mid, r)
-            else:
-                return binary_search(l, mid)
+            return binary_search(l, mid)
         
         if n == 1 or nums[n-1] > nums[0]:
             return nums[0]
