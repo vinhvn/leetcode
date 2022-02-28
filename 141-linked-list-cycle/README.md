@@ -13,7 +13,7 @@
 </pre>
 
 <p><strong>Example 2:</strong></p>
-<img alt="" src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test2.png" style="width: 141px; height: 74px;" title="">
+<img alt="" src="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist_test2.png" style="width: 141px; height: 74px;">
 <pre><strong>Input:</strong> head = [1,2], pos = 0
 <strong>Output:</strong> true
 <strong>Explanation:</strong> There is a cycle in the linked list, where the tail connects to the 0th node.
