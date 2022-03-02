@@ -15,9 +15,5 @@ class Solution:
             else:
                 heapq.heappushpop(heap, (val, key))
             i += 1
-                
-        output = []
-        # pop max k
-        for i in range(k):
-            output.append(heapq.heappop(heap)[1])
-        return output
+        # return k largest
+        return [x[1] for x in heapq.nlargest(k, heap)]
