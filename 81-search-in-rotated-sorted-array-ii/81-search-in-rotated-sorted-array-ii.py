@@ -5,7 +5,6 @@ class Solution:
         start, end = 0, len(nums) - 1
         while start <= end:
             mid = start + (end - start) // 2
-            print(start, nums[start], nums[mid], nums[end], end)
             if key == nums[mid]:
                 return True
             # shrink if all indices result in the same number
