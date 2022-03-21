@@ -8,36 +8,25 @@ import random
 
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        def llpop(head):
-            if not head:
-                return None
-            return (head.val, random.getrandbits(128), head.next)
-
-        if len(lists) == 0:
-            return None
-        
-        heap = []
         k = len(lists)
-        # add one element from each list to heap
-        for i in range(k):
+        minHeap = []  # k in size
+        # add all list heads to the min heap
+        for i in range(k):  # use index to differ duplicate values
             if lists[i] is not None:
-                heapq.heappush(heap, llpop(lists[i]))
+                heapq.heappush(minHeap, (lists[i].val, i, lists[i].next))
 
-        if len(heap) == 0:
-            return None
+        resultHead = None
+        while minHeap:
+            val, i, nextHead = heapq.heappop(minHeap)
+            # if head is none, set the head
+            if resultHead is None:
+                resultHead = ListNode(val)
+                node = resultHead
+            else:  # otherwise, build the list nodes
+                node.next = ListNode(val)
+                node = node.next
+            # if next is not None, add it back onto the heap
+            if nextHead:
+                heapq.heappush(minHeap, (nextHead.val, i, nextHead.next))
 
-        # build list
-        head = ListNode()
-        prev = None
-        node = head
-        while len(heap) > 0:
-            popped = heapq.heappop(heap)
-            if popped[2] is not None:
-                heapq.heappush(heap, llpop(popped[2]))
-            node.val = popped[0]
-            node.next = ListNode()
-            prev = node
-            node = node.next
-        if prev is not None:
-            prev.next = None
-        return head
+        return resultHead
