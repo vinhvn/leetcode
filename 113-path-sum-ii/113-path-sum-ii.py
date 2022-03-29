@@ -11,7 +11,7 @@ class Solution:
             if not node:
                 return
             curSum += node.val
-            path = curPath.copy()
+            path = list(curPath)
             path.append(node.val)
             if curSum == targetSum and not node.left and not node.right:
                 paths.append(path)
