@@ -4,7 +4,6 @@ class Solution:
 
         for i in range(1, len(nums)):
             output[i] = nums[i-1] * output[i-1]
-            print(nums[i-1], output[i-1])
 
         right_product = 1
         for i in range(len(nums) - 2, -1, -1):
