@@ -1,30 +1,51 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        if len(nums) == 0:
+        # subroutine to find minimum (LC 153)
+        def findMinimum():
+            # base cases
+            # 1 elem array or arr in sorted order (no rotations)
+            if len(nums) == 1 or nums[0] < nums[-1]:
+                return 0
+
+            left, right = 0, len(nums) - 1
+            while left <= right:
+                mid = left + (right - left) // 2
+
+                # return point of rotation if found
+                if nums[mid-1] > nums[mid]:
+                    return mid
+                elif nums[mid] > nums[mid+1]:
+                    return mid+1
+
+                # otherwise, do some binary search
+                if nums[mid] > nums[left]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+
             return -1
         
-        l, r = 0, len(nums)-1
-        while l < r:
-            mid = l + (r-l) // 2
-            if nums[mid] > nums[r]:
-                l = mid+1
-            else:
-                r = mid
+        # base case
+        if len(nums) == 0:
+            return -1
+        # find minimum
+        minIdx = findMinimum()
         
-        min = l
-        l, r = 0, len(nums)-1
-        if nums[min] <= target and target <= nums[r]:
-            l = min
+        # change left and right pointers based on minimum point
+        left, right = 0, len(nums) - 1
+        if nums[minIdx] <= target and target <= nums[right]:
+            left = minIdx
         else:
-            r = min
-
-        while l <= r:
-            mid = l + (r-l) // 2
+            right = minIdx
+        
+        # binary search to find target
+        while left <= right:
+            mid = left + (right - left) // 2
             if nums[mid] == target:
                 return mid
             elif target > nums[mid]:
-                l = mid+1
+                left = mid+1
             else:
-                r = mid-1
+                right = mid-1
         
         return -1
