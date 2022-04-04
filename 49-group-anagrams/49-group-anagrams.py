@@ -2,13 +2,8 @@ from collections import Counter
 
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        groups = {}
+        groups = defaultdict(list)
         for s in strs:
-            sortedStr = str(sorted(s))
-            if sortedStr not in groups:
-                groups[sortedStr] = []
+            sortedStr = "".join(sorted(s))
             groups[sortedStr].append(s)
-        output = []
-        for _, s in groups.items():
-            output.append(s)
-        return output
+        return list(groups.values())
