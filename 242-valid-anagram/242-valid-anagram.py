@@ -1,14 +1,19 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
+        # base case
         if len(s) != len(t):
             return False
-        s_freq = {}
-        for char in s:
-            s_freq[char] = s_freq.get(char, 0) + 1
-        t_freq = {}
-        for char in t:
-            t_freq[char] = t_freq.get(char, 0) + 1
-        for key in s_freq:
-            if key not in t_freq or s_freq[key] != t_freq[key]:
+        
+        # populate hashmaps of char frequencies
+        sFreq = defaultdict(int)
+        tFreq = defaultdict(int)
+        for i in range(len(s)):
+            sFreq[s[i]] += 1
+            tFreq[t[i]] += 1
+        
+        # compare hashmaps
+        for char, freq in sFreq.items():
+            if char not in tFreq or tFreq[char] != freq:
                 return False
+        
         return True
