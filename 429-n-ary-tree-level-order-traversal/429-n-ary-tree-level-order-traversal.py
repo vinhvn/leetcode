@@ -12,12 +12,12 @@ class Solution:
             return []
         
         res = []
-        q = [root]
+        q = deque([root])
         while q:
             levelLen = len(q)
             level = []
             for _ in range(levelLen):
-                node = q.pop(0)
+                node = q.popleft()
                 level.append(node.val)
                 for child in node.children:
                     q.append(child)
