@@ -1,4 +1,3 @@
 class Solution:
     def countSegments(self, s: str) -> int:
-        words = s.split(" ")
-        return len([word for word in words if word])
+        return len([segment for segment in s.split(" ") if segment])
