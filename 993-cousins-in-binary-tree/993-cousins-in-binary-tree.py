@@ -10,8 +10,7 @@ class Solution:
         q.append((root, -1))
         while q:
             lenLevel = len(q)
-            xParent = None
-            yParent = None
+            xParent = yParent = None
             for i in range(lenLevel):
                 node, parent = q.popleft()
                 if node.val == x:
