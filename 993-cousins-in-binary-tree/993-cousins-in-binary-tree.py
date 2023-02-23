@@ -17,7 +17,7 @@ class Solution:
                     xParent = parent
                 if node.val == y:
                     yParent = parent
-                if xParent is not None and yParent is not None and xParent != yParent:
+                if xParent and yParent and xParent != yParent:
                     return True
 
                 # add to q
@@ -25,5 +25,8 @@ class Solution:
                     q.append((node.left, node.val))
                 if node.right:
                     q.append((node.right, node.val))
+
+            if xParent or yParent:
+                return False
         
         return False
