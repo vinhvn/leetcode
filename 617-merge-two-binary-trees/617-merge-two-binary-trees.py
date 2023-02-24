@@ -16,16 +16,9 @@ class Solution:
             if node2:
                 newNode.val += node2.val
             
-            if node1 and node2:
-                newNode.left = mergeTraverse(node1.left, node2.left)
-                newNode.right = mergeTraverse(node1.right, node2.right)
-            elif node1:
-                newNode.left = mergeTraverse(node1.left, None)
-                newNode.right = mergeTraverse(node1.right, None)
-            else:
-                newNode.left = mergeTraverse(None, node2.left)
-                newNode.right = mergeTraverse(None, node2.right)
-                
+            newNode.left = mergeTraverse(node1.left if node1 else None, node2.left if node2 else None)
+            newNode.right = mergeTraverse(node1.right if node1 else None, node2.right if node2 else None)
+
             return newNode
         
         return mergeTraverse(root1, root2)
